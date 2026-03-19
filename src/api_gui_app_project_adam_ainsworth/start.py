@@ -18,6 +18,7 @@ from PySide6.QtWidgets import (
     QGridLayout
 )
 import controller
+from trivia import TriviaWindow
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -41,14 +42,7 @@ class MainWindow(QMainWindow):
         self.main_page.setLayout(self.main_layout)
 
         # Trivia page: 
-        self.trivia_page = QWidget()
-        self.trivia_layout = QGridLayout()
-        trivia_label = QLabel("Trivia Game")
-        self.main_menu_button = QPushButton("Main Menu")
-        self.main_menu_button.clicked.connect(self.goto_page)
-        self.trivia_layout.addWidget(trivia_label, 0, 0, 1, 3)
-        self.trivia_layout.addWidget(self.main_menu_button, 1, 0, 1, 1)
-        self.trivia_page.setLayout(self.trivia_layout)
+        self.trivia_page = TriviaWindow(self)
 
         # add widgets & layouts to main layout
         self.stacked_layout.addWidget(self.main_page)

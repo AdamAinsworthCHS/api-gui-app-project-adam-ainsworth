@@ -4,12 +4,6 @@ by Adam Ainsworth
 Main interface for the trivia game
 """
 
-"""
-start.py
-by Adam Ainsworth
-Start page for the trivia game
-"""
-
 import sys
 from PySide6.QtGui import QFont, QFontDatabase
 from PySide6.QtWidgets import (
@@ -20,30 +14,19 @@ from PySide6.QtWidgets import (
     QLabel,
     QWidget,
     QStackedLayout,
-    QStackedWidget
+    QStackedWidget,
+    QGridLayout
 )
 
 class TriviaWindow(QWidget):
-    def __init__(self, parent = None):
-        super().__init__(parent)
+    def __init__(self, parentSelf):
+        super().__init__()
 
-        # create layout
-        self.layout = QVBoxLayout()
-
-        # add labels
-        self.title = QLabel("game")
-
-        # add button
-        self.begin_game_button = QPushButton("Back to main menu")
-        # self.begin_game_button.clicked.connect(self.MainMenu)
-
-        # add widgets & layouts to main layout
-        self.layout.addWidget(self.title)
-        self.layout.addWidget(self.begin_game_button)
-
-        widget = QWidget()
-        widget.setLayout(self.layout)
-
-    # def MainMenu(self):
-    #     window = start.MainWindow()
-    #     window.show()
+        self.trivia_page = QWidget()
+        self.trivia_layout = QGridLayout()
+        trivia_label = QLabel("Trivia Game")
+        self.main_menu_button = QPushButton("Main Menu")
+        self.main_menu_button.clicked.connect(parentSelf.goto_page)
+        self.trivia_layout.addWidget(trivia_label, 0, 0, 1, 3)
+        self.trivia_layout.addWidget(self.main_menu_button, 1, 0, 1, 1)
+        self.setLayout(self.trivia_layout)
