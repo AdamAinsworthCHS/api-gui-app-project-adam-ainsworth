@@ -18,7 +18,9 @@ from PySide6.QtWidgets import (
     QGridLayout
 )
 import controller
-from trivia import TriviaWindow
+if __name__ == "__main__":
+    from trivia import TriviaWindow
+    from results import ResultsWindow
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -36,17 +38,19 @@ class MainWindow(QMainWindow):
         self.main_layout = QGridLayout()
         title_label = QLabel("FruiTrivia")
         self.trivia_button = QPushButton("Begin Game")
-        self.trivia_button.clicked.connect(self.goto_page)
+        self.trivia_button.clicked.connect(lambda: self.goto_page(1))
         self.main_layout.addWidget(title_label, 0, 0, 1, 3)
         self.main_layout.addWidget(self.trivia_button, 1, 0, 1, 1)
         self.main_page.setLayout(self.main_layout)
 
         # Trivia page: 
         self.trivia_page = TriviaWindow(self)
+        self.results_page = ResultsWindow(self)
 
         # add widgets & layouts to main layout
         self.stacked_layout.addWidget(self.main_page)
         self.stacked_layout.addWidget(self.trivia_page)
+        self.stacked_layout.addWidget(self.results_page)
 
         widget = QWidget()
         widget.setLayout(self.stacked_layout)
@@ -54,12 +58,8 @@ class MainWindow(QMainWindow):
         # Set the central widget of the Window.
         self.setCentralWidget(widget)
 
-    def goto_page(self):
-        sending_button = self.sender()
-        if sending_button.text() == "Begin Game":
-            self.stacked_layout.setCurrentIndex(1)
-        elif sending_button.text() == "Main Menu":
-            self.stacked_layout.setCurrentIndex(0)
+    def goto_page(self, destination):
+        self.stacked_layout.setCurrentIndex(destination)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
