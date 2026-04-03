@@ -12,8 +12,4 @@ response = requests.get(url)
 data = response.json()
 fruitDict = {}
 fruitDict = data
-
-def CreateQuestion():
-    fruit = random.randrange(49)
-    category = random.randrange(6)
     
