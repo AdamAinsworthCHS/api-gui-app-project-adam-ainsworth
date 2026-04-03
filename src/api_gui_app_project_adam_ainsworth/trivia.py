@@ -19,7 +19,6 @@ from PySide6.QtWidgets import (
 )
 import random
 import controller
-import start
 import results
 
 class TriviaWindow(QWidget):
@@ -54,9 +53,12 @@ class TriviaWindow(QWidget):
         
     
     def CreateQuestion(self, parent_self):
+        self.first_fruit_button.clicked.disconnect()
+        self.second_fruit_button.clicked.disconnect()
+        self.third_fruit_button.clicked.disconnect()
+        self.fourth_fruit_button.clicked.disconnect()
         self.otherfruits.clear()
         self.correct_button = random.randrange(5)
-        print(self.correct_button)
         self.fruit = random.randrange(49)
         self.category = random.randrange(6)
         while self.otherfruits.__len__() < 4:
@@ -99,7 +101,7 @@ class TriviaWindow(QWidget):
         else:
             self.third_fruit_button.setText(controller.fruitDict[self.otherfruits[2]]['name'])
             self.third_fruit_button.clicked.connect(lambda: self.WrongAnswer(parent_self))
-        
+
         if self.correct_button == 4:
             self.fourth_fruit_button.setText(controller.fruitDict[self.fruit]['name'])
             self.fourth_fruit_button.clicked.connect(lambda: self.CorrectAnswer(parent_self))
@@ -108,11 +110,9 @@ class TriviaWindow(QWidget):
             self.fourth_fruit_button.clicked.connect(lambda: self.WrongAnswer(parent_self))
     
     def WrongAnswer(self, parent_self):
-        self.CreateQuestion(parent_self)
         results.ResultsWindow.update_wrong(parent_self.results_page)
-        start.MainWindow.goto_page(parent_self, 2)
+        parent_self.stacked_layout.setCurrentIndex(2)
 
     def CorrectAnswer(self, parent_self):
-        self.CreateQuestion(parent_self)
         results.ResultsWindow.update_correct(parent_self.results_page)
-        start.MainWindow.goto_page(parent_self, 2)
+        parent_self.stacked_layout.setCurrentIndex(2)
