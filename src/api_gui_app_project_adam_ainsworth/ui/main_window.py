@@ -5,22 +5,17 @@ Start page for the trivia game
 """
 
 import sys
-from PySide6.QtGui import QFont, QFontDatabase
 from PySide6.QtWidgets import (
-    QApplication,
     QMainWindow,
-    QVBoxLayout,
     QPushButton,
     QLabel,
     QWidget,
-    QStackedWidget,
     QStackedLayout,
     QGridLayout
 )
-import controller
-if __name__ == "__main__":
-    from trivia import TriviaWindow
-    from results import ResultsWindow
+import utils.controller
+from ui.trivia import TriviaWindow
+from ui.results import ResultsWindow
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -60,10 +55,3 @@ class MainWindow(QMainWindow):
 
     def goto_page(self, destination):
         self.stacked_layout.setCurrentIndex(destination)
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = MainWindow()
-    window.show()
-
-    app.exec()

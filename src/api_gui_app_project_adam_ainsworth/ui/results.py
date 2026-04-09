@@ -5,20 +5,14 @@ Results screen for the trivia game
 """
 
 import sys
-from PySide6.QtGui import QFont, QFontDatabase
 from PySide6.QtWidgets import (
-    QApplication,
-    QMainWindow,
-    QVBoxLayout,
     QPushButton,
     QLabel,
     QWidget,
-    QStackedLayout,
-    QStackedWidget,
     QGridLayout
 )
 import random
-import controller
+import utils.controller
 
 class ResultsWindow(QWidget):
 
