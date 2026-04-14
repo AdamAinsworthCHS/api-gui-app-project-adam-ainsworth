@@ -6,8 +6,6 @@ utils.controller for the trivia game
 
 import requests as re
 import json
-import pathlib
-import logging
 
 fruit_dict = {}
 
@@ -40,7 +38,7 @@ if __name__ == "__main__":
     # Make api requests
     base_api = "https://www.fruityvice.com/api/"
     endpoint = "fruit/"
-    search_term = "idawhduo"
+    search_term = "all"
     fruit_data = PullData(base_api, endpoint, search_term)
     if isinstance(fruit_data, str):
         print(fruit_data)
