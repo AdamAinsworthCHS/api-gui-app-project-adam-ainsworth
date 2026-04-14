@@ -66,70 +66,70 @@ class TriviaWindow(QWidget):
         if (self.category == 1):
             temp_calories_number = 0
             for i in range (self.fruits.__len__()):
-                if utils.controller.fruitDict[self.fruits[i]]['nutritions']['calories'] > temp_calories_number:
-                    temp_calories_number = utils.controller.fruitDict[self.fruits[i]]['nutritions']['calories']
+                if utils.controller.fruit_dict[self.fruits[i]]['nutritions']['calories'] > temp_calories_number:
+                    temp_calories_number = utils.controller.fruit_dict[self.fruits[i]]['nutritions']['calories']
                     self.fruit = self.fruits[i]
             self.fruits.remove(self.fruit)
             self.trivia_label.setText("Which fruit has the most calories per 100 grams?")
         elif (self.category == 2):
             temp_fat_number = 0
             for i in range (self.fruits.__len__()):
-                if utils.controller.fruitDict[self.fruits[i]]['nutritions']['fat'] > temp_fat_number:
-                    temp_fat_number = utils.controller.fruitDict[self.fruits[i]]['nutritions']['fat']
+                if utils.controller.fruit_dict[self.fruits[i]]['nutritions']['fat'] > temp_fat_number:
+                    temp_fat_number = utils.controller.fruit_dict[self.fruits[i]]['nutritions']['fat']
                     self.fruit = self.fruits[i]
             self.fruits.remove(self.fruit)
             self.trivia_label.setText("Which fruit has the most fat per 100 grams?")
         elif (self.category == 3):
             temp_sugar_number = 0
             for i in range (self.fruits.__len__()):
-                if utils.controller.fruitDict[self.fruits[i]]['nutritions']['sugar'] > temp_sugar_number:
-                    temp_sugar_number = utils.controller.fruitDict[self.fruits[i]]['nutritions']['sugar']
+                if utils.controller.fruit_dict[self.fruits[i]]['nutritions']['sugar'] > temp_sugar_number:
+                    temp_sugar_number = utils.controller.fruit_dict[self.fruits[i]]['nutritions']['sugar']
                     self.fruit = self.fruits[i]
             self.fruits.remove(self.fruit)
             self.trivia_label.setText("Which fruit has the most sugar per 100 grams?")
         elif (self.category == 4):
             temp_carbs_number = 0
             for i in range (self.fruits.__len__()):
-                if utils.controller.fruitDict[self.fruits[i]]['nutritions']['carbohydrates'] > temp_carbs_number:
-                    temp_carbs_number = utils.controller.fruitDict[self.fruits[i]]['nutritions']['carbohydrates']
+                if utils.controller.fruit_dict[self.fruits[i]]['nutritions']['carbohydrates'] > temp_carbs_number:
+                    temp_carbs_number = utils.controller.fruit_dict[self.fruits[i]]['nutritions']['carbohydrates']
                     self.fruit = self.fruits[i]
             self.fruits.remove(self.fruit)
             self.trivia_label.setText("Which fruit has the most carbohydrates per 100 grams?")
         elif (self.category == 5):
             temp_protein_number = 0
             for i in range (self.fruits.__len__()):
-                if utils.controller.fruitDict[self.fruits[i]]['nutritions']['protein'] > temp_protein_number:
-                    temp_protein_number = utils.controller.fruitDict[self.fruits[i]]['nutritions']['protein']
+                if utils.controller.fruit_dict[self.fruits[i]]['nutritions']['protein'] > temp_protein_number:
+                    temp_protein_number = utils.controller.fruit_dict[self.fruits[i]]['nutritions']['protein']
                     self.fruit = self.fruits[i]
             self.fruits.remove(self.fruit)
             self.trivia_label.setText("Which fruit has the most protein per 100 grams?")
         
         if self.correct_button == 1:
-            self.first_fruit_button.setText(utils.controller.fruitDict[self.fruit]['name'])
+            self.first_fruit_button.setText(utils.controller.fruit_dict[self.fruit]['name'])
             self.first_fruit_button.clicked.connect(lambda: self.CorrectAnswer(parent_self))
         else:
-            self.first_fruit_button.setText(utils.controller.fruitDict[self.fruits[0]]['name'])
+            self.first_fruit_button.setText(utils.controller.fruit_dict[self.fruits[0]]['name'])
             self.first_fruit_button.clicked.connect(lambda: self.WrongAnswer(parent_self))
         
         if self.correct_button == 2:
-            self.second_fruit_button.setText(utils.controller.fruitDict[self.fruit]['name'])
+            self.second_fruit_button.setText(utils.controller.fruit_dict[self.fruit]['name'])
             self.second_fruit_button.clicked.connect(lambda: self.CorrectAnswer(parent_self))
         else:
-            self.second_fruit_button.setText(utils.controller.fruitDict[self.fruits[1]]['name'])
+            self.second_fruit_button.setText(utils.controller.fruit_dict[self.fruits[1]]['name'])
             self.second_fruit_button.clicked.connect(lambda: self.WrongAnswer(parent_self))
         
         if self.correct_button == 3:
-            self.third_fruit_button.setText(utils.controller.fruitDict[self.fruit]['name'])
+            self.third_fruit_button.setText(utils.controller.fruit_dict[self.fruit]['name'])
             self.third_fruit_button.clicked.connect(lambda: self.CorrectAnswer(parent_self))
         else:
-            self.third_fruit_button.setText(utils.controller.fruitDict[self.fruits[2]]['name'])
+            self.third_fruit_button.setText(utils.controller.fruit_dict[self.fruits[2]]['name'])
             self.third_fruit_button.clicked.connect(lambda: self.WrongAnswer(parent_self))
 
         if self.correct_button == 4:
-            self.fourth_fruit_button.setText(utils.controller.fruitDict[self.fruit]['name'])
+            self.fourth_fruit_button.setText(utils.controller.fruit_dict[self.fruit]['name'])
             self.fourth_fruit_button.clicked.connect(lambda: self.CorrectAnswer(parent_self))
         else:
-            self.fourth_fruit_button.setText(utils.controller.fruitDict[self.fruits[3]]['name'])
+            self.fourth_fruit_button.setText(utils.controller.fruit_dict[self.fruits[3]]['name'])
             self.fourth_fruit_button.clicked.connect(lambda: self.WrongAnswer(parent_self))
     
     def WrongAnswer(self, parent_self):
