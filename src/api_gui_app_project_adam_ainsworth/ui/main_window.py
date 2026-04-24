@@ -11,11 +11,12 @@ from PySide6.QtWidgets import (
     QLabel,
     QWidget,
     QStackedLayout,
-    QGridLayout
+    QVBoxLayout
 )
 import utils.controller
 from ui.trivia import TriviaWindow
 from ui.results import ResultsWindow
+from PySide6.QtCore import Qt
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -30,12 +31,12 @@ class MainWindow(QMainWindow):
 
         # Main page: 
         self.main_page = QWidget()
-        self.main_layout = QGridLayout()
+        self.main_layout = QVBoxLayout()
         title_label = QLabel("FruiTrivia")
         self.trivia_button = QPushButton("Begin Game")
         self.trivia_button.clicked.connect(lambda: self.goto_page(1))
-        self.main_layout.addWidget(title_label, 0, 0, 1, 3)
-        self.main_layout.addWidget(self.trivia_button, 1, 0, 1, 1)
+        self.main_layout.addWidget(title_label, 0, alignment=Qt.AlignCenter)
+        self.main_layout.addWidget(self.trivia_button, 1, alignment=Qt.AlignCenter)
         self.main_page.setLayout(self.main_layout)
 
         # Trivia page: 

@@ -10,8 +10,10 @@ from PySide6.QtWidgets import (
     QPushButton,
     QLabel,
     QWidget,
-    QGridLayout
+    QGridLayout,
+    QVBoxLayout
 )
+from PySide6.QtCore import Qt
 import random
 import utils.controller
 import ui.results
@@ -22,7 +24,8 @@ class TriviaWindow(QWidget):
         super().__init__()
 
         self.trivia_page = QWidget()
-        self.trivia_layout = QGridLayout()
+        self.trivia_layout = QVBoxLayout()
+        self.buttons_layout = QGridLayout()
         self.trivia_label = QLabel("Trivia Game")
         self.setLayout(self.trivia_layout)
 
@@ -39,11 +42,12 @@ class TriviaWindow(QWidget):
 
         self.CreateQuestion(parent_self)
         
-        self.trivia_layout.addWidget(self.trivia_label, 0, 0, 1, 3)
-        self.trivia_layout.addWidget(self.first_fruit_button, 1, 0, 1, 1)
-        self.trivia_layout.addWidget(self.second_fruit_button, 2, 0, 1, 1)
-        self.trivia_layout.addWidget(self.third_fruit_button, 3, 0, 1, 1)
-        self.trivia_layout.addWidget(self.fourth_fruit_button, 4, 0, 1, 1)
+        self.trivia_layout.addWidget(self.trivia_label, 0, alignment=Qt.AlignCenter)
+        self.trivia_layout.addLayout(self.buttons_layout, 1)
+        self.buttons_layout.addWidget(self.first_fruit_button, 0, 0)
+        self.buttons_layout.addWidget(self.second_fruit_button, 0, 1)
+        self.buttons_layout.addWidget(self.third_fruit_button, 1, 0)
+        self.buttons_layout.addWidget(self.fourth_fruit_button, 1, 1)
 
         
     
@@ -54,16 +58,16 @@ class TriviaWindow(QWidget):
         self.fourth_fruit_button.clicked.disconnect()
         self.fruits.clear()
         self.correct_button = random.randrange(5)
-        self.category = random.randrange(6)
+        self.category = random.randrange(5)
         while self.fruits.__len__() < 6:
             tempnumber = 0
-            tempnumber = random.randrange(49)
+            tempnumber = random.randrange(len(utils.controller.fruit_dict))
             if self.fruits.__contains__(tempnumber):
                 pass
             else:
                 self.fruits.append(tempnumber)
         
-        if (self.category == 1):
+        if (self.category == 0):
             temp_calories_number = 0
             for i in range (self.fruits.__len__()):
                 if utils.controller.fruit_dict[self.fruits[i]]['nutritions']['calories'] > temp_calories_number:
@@ -71,7 +75,7 @@ class TriviaWindow(QWidget):
                     self.fruit = self.fruits[i]
             self.fruits.remove(self.fruit)
             self.trivia_label.setText("Which fruit has the most calories per 100 grams?")
-        elif (self.category == 2):
+        elif (self.category == 1):
             temp_fat_number = 0
             for i in range (self.fruits.__len__()):
                 if utils.controller.fruit_dict[self.fruits[i]]['nutritions']['fat'] > temp_fat_number:
@@ -79,7 +83,7 @@ class TriviaWindow(QWidget):
                     self.fruit = self.fruits[i]
             self.fruits.remove(self.fruit)
             self.trivia_label.setText("Which fruit has the most fat per 100 grams?")
-        elif (self.category == 3):
+        elif (self.category == 2):
             temp_sugar_number = 0
             for i in range (self.fruits.__len__()):
                 if utils.controller.fruit_dict[self.fruits[i]]['nutritions']['sugar'] > temp_sugar_number:
@@ -87,7 +91,7 @@ class TriviaWindow(QWidget):
                     self.fruit = self.fruits[i]
             self.fruits.remove(self.fruit)
             self.trivia_label.setText("Which fruit has the most sugar per 100 grams?")
-        elif (self.category == 4):
+        elif (self.category == 3):
             temp_carbs_number = 0
             for i in range (self.fruits.__len__()):
                 if utils.controller.fruit_dict[self.fruits[i]]['nutritions']['carbohydrates'] > temp_carbs_number:
@@ -95,7 +99,7 @@ class TriviaWindow(QWidget):
                     self.fruit = self.fruits[i]
             self.fruits.remove(self.fruit)
             self.trivia_label.setText("Which fruit has the most carbohydrates per 100 grams?")
-        elif (self.category == 5):
+        elif (self.category == 4):
             temp_protein_number = 0
             for i in range (self.fruits.__len__()):
                 if utils.controller.fruit_dict[self.fruits[i]]['nutritions']['protein'] > temp_protein_number:
